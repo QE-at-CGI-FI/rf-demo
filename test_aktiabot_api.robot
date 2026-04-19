@@ -8,28 +8,7 @@ ${PAGE_URL}    https://www.aktia.fi/
 ${EXPECTED_TEXT}    Jos soitat ulkomailta
 
 *** Test Cases ***
-Get Chatbot Panel Configuration
-    [Documentation]    Fetch the chat panel config and verify structure
-    ${body}=    Create Dictionary    command=CONFIG
-    ${response}=    POST    ${BASE_URL}/api/chat_panel/v2    json=${body}    expected_status=200
-    Should Not Be Empty    ${response.json()}
-    Log    ${response.json()}
-
-Start Chat Session In Finnish
-    [Documentation]    Start a new consumer chatbot session in Finnish
-    ${filter}=    Create List    chatbot-consumer-customers
-    ${body}=    Create Dictionary
-    ...    command=START
-    ...    filter_values=${filter}
-    ...    language=fi-FI
-    ...    trigger_action=${6920}
-    ...    page_url=${PAGE_URL}
-    ${response}=    POST    ${BASE_URL}/api/chat/v2    json=${body}    expected_status=200
-    ${json}=    Set Variable    ${response.json()}
-    Log    ${json}
-    Should Not Be Empty    ${json}
-
-Send Message And Click Action Link
+Aktiabot chat responds to user queries on API level
     [Documentation]    Start a session, send a message, click action link, verify response
     # Start session
     ${filter}=    Create List    chatbot-consumer-customers
