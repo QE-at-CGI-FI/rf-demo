@@ -21,7 +21,7 @@ jobs:
           rfbrowser init
 
       - name: Run Robot Framework tests
-        run: robot --variable HEADLESS:true aktiabot.robot
+        run: robot --variable HEADLESS:true test_aktiabot.robot test_aktiabot_api.robot
 
       - name: Upload test results
         if: always()
